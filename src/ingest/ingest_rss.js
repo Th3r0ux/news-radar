@@ -52,9 +52,9 @@ async function ingestSource(sourceConfig) {
         .single()
 
       if (rawError) {
-        // probablement un doublon → on skip
-        continue
-      }
+  console.log(`↷ Doublon ignoré: ${title}`)
+  continue
+}
 
       // 🔍 Chercher candidat existant
 const words = normalize(title)
