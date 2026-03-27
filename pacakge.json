@@ -1,0 +1,14 @@
+{
+  "name": "news-radar",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/ingest/ingest_rss.js",
+  "scripts": {
+    "ingest:rss": "node src/ingest/ingest_rss.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "dotenv": "^16.4.7",
+    "rss-parser": "^3.13.0"
+  }
+}
