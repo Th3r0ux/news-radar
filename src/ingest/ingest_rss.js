@@ -96,11 +96,6 @@ if (!candidate) {
   candidate = newCandidate
 }
 
-      if (candidateError) {
-        console.error(candidateError)
-        continue
-      }
-
       await supabase
         .from('candidate_items')
         .insert({
