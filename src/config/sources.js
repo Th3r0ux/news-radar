@@ -11,7 +11,7 @@ export const RSS_SOURCES = [
     },
     {
         name: "La Presse",
-        url: "https://www.lapresse.ca/actualites/rss.xml",
+        url: "https://www.lapresse.ca/actualites/rss",
         category: "general_quebec",
         priority: 10,
         language: "fr",
@@ -19,15 +19,7 @@ export const RSS_SOURCES = [
     },
     {
         name: "TVA Nouvelles",
-        url: "https://www.tvanouvelles.ca/rss.xml",
-        category: "general_quebec",
-        priority: 9,
-        language: "fr",
-        region: "quebec"
-    },
-    {
-        name: "Noovo Info",
-        url: "https://www.noovo.info/rss.xml",
+        url: "https://www.tvanouvelles.ca/rss",
         category: "general_quebec",
         priority: 9,
         language: "fr",
