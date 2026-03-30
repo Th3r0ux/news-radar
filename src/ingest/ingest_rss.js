@@ -28,7 +28,7 @@ async function ingestSource(sourceConfig) {
     let { data: source, error: sourceError } = await supabase
         .from('sources')
         .select('*')
-        .eq('name', sourceConfig.name)
+        .eq('slug', sourceConfig.slug)
         .maybeSingle()
 
     if (sourceError) {
@@ -41,11 +41,11 @@ async function ingestSource(sourceConfig) {
             .from('sources')
             .insert({
                 name: sourceConfig.name,
-                url: sourceConfig.url,
-                category: sourceConfig.category,
-                priority: sourceConfig.priority,
-                language: sourceConfig.language,
-                region: sourceConfig.region
+                slug: sourceConfig.slug,
+                type: sourceConfig.type || 'rss',
+                base_url: sourceConfig.base_url,
+                is_active: true,
+                poll_frequency_minutes: 30
             })
             .select()
             .single()
