@@ -5,6 +5,7 @@ import { RSS_SOURCES } from '../config/sources.js'
 
 const parser = new Parser()
 
+// test commit
 function normalize(text) {
   return text
     .toLowerCase()
