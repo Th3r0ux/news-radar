@@ -25,20 +25,38 @@ async function ingestSource(sourceConfig) {
         return
     }
 
-    const { data: source, error: sourceError } = await supabase
+    let { data: source, error: sourceError } = await supabase
         .from('sources')
         .select('*')
         .eq('name', sourceConfig.name)
         .maybeSingle()
 
     if (sourceError) {
-        console.error(`Erreur Supabase source ${sourceConfig.name}:`, sourceError.message)
+        console.error(`Erreur Supabase source ${sourceConfig.name}: ${sourceError.message}`)
         return
     }
 
     if (!source) {
-        console.error(`Source non trouvée dans Supabase: ${sourceConfig.name}`)
-        return
+        const { data: newSource, error: insertSourceError } = await supabase
+            .from('sources')
+            .insert({
+                name: sourceConfig.name,
+                url: sourceConfig.url,
+                category: sourceConfig.category,
+                priority: sourceConfig.priority,
+                language: sourceConfig.language,
+                region: sourceConfig.region
+            })
+            .select()
+            .single()
+
+        if (insertSourceError) {
+            console.error(`Impossible de créer la source ${sourceConfig.name}: ${insertSourceError.message}`)
+            return
+        }
+
+        source = newSource
+        console.log(`+ Source créée dans Supabase: ${sourceConfig.name}`)
     }
 
     for (const item of (feed.items || []).slice(0, 10)) {
